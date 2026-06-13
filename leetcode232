@@ -1,0 +1,34 @@
+import java.util.Stack;
+
+class leetcode232 {
+
+    private Stack<Integer> inputStack;
+    private Stack<Integer> outputStack;
+
+    public MyQueue() {
+        inputStack = new Stack<>();
+        outputStack = new Stack<>();
+    }
+
+    public void push(int x) {
+        inputStack.push(x);
+    }
+
+    public int pop() {
+        peek(); // Ensure outputStack has elements
+        return outputStack.pop();
+    }
+
+    public int peek() {
+        if (outputStack.isEmpty()) {
+            while (!inputStack.isEmpty()) {
+                outputStack.push(inputStack.pop());
+            }
+        }
+        return outputStack.peek();
+    }
+
+    public boolean empty() {
+        return inputStack.isEmpty() && outputStack.isEmpty();
+    }
+}
